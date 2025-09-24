@@ -1,0 +1,113 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Encabezado principal y botón de login */
+.main-header {
+    background-color: #333;
+    padding: 1rem;
+    color: white;
+}
+.main-header nav {
+    text-align: right;
+}
+.login-button {
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+/* Contenedor de bienvenida */
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+}
+.welcome-box {
+    text-align: center;
+    background-color: white;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+}
+.welcome-box h1 {
+    color: #333;
+}
+.welcome-box img {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+
+/* Pie de página */
+.main-footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    background-color: #333;
+    color: white;
+}
+
+/* --- Estilos para otras páginas (Login, Inventario) --- */
+
+/* Estilos para formularios (login, registro) */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre elementos del form */
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 2rem auto; /* Centrar el formulario */
+}
+form label {
+    font-weight: bold;
+}
+form input[type="text"],
+form input[type="password"],
+form input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form button {
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+form button:hover {
+    background-color: #218838;
+}
+
+/* Mensaje de error en el login */
+.error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 400px;
+    margin: 1rem auto;
+}
