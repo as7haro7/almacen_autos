@@ -1,20 +1,17 @@
 <?php
-require_once "../datos/conexion.php";
+require_once '../datos/conexion.php';
 
 class ProveedorNegocio {
-    private $db;
 
-    public function __construct() {
-        $this->db = conectarDB();
-    }
+    public static function filtrarPorIndustria($industria) {
+        $db = Conexion::conectar();
 
-    public function filtrarPorIndustria($industria) {
-        $query = "SELECT * FROM proveedores WHERE industria = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("s", $industria);
+        $sql = "SELECT * FROM proveedores WHERE industria = :industria";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':industria', $industria, PDO::PARAM_STR);
         $stmt->execute();
-        $resultado = $stmt->get_result();
-        return $resultado->fetch_all(MYSQLI_ASSOC);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>
