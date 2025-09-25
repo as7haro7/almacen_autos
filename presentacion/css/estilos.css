@@ -118,3 +118,7 @@ form button:hover {
 .welcome-container-tabla{
     display: block;
 }
+
+.separacion{
+    column-gap: 30px;
+}

@@ -30,8 +30,13 @@ if (isset($_SESSION['usuario_id'])) {
         <div class="welcome-box">
             <h1>Sistema de Gestión de Almacén de Vehículos</h1>
             <p>Administre y controle el inventario de vehículos de forma eficiente y segura.</p>
-            
-            <p>Por favor, inicie sesión para comenzar a gestionar el inventario.</p>
+            <div class = "separcion">
+            <a href="presentacion/moduloProvedores.php" style="text-decoration: none;">proveedores</a><br>
+            <a href="presentacion/ver_inventario.php" style="text-decoration: none;">Inventario</a><br>
+            <a href="presentacion/moduloCompra.php" style="text-decoration: none;">compra</a><br>
+            <a href="presentacion/reportes.php" style="text-decoration: none;">reportes</a><br>
+            </div>
+
         </div>
     </main>
 
