@@ -1,6 +1,14 @@
- 
+ <?php
+require "../negocio/gestionProveedores.php";
 
+$proveedorNegocio = new ProveedorNegocio();
+$resultados = [];
 
+if ($_POST) {
+    $industria = $_POST['select'];
+    $resultados = $proveedorNegocio->filtrarPorIndustria($industria);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,34 +22,53 @@
     </header>
 
         <h2>Filtrar Proveedores</h2>
-        <h3>Resultados:</h3>
-    <main class="welcome-container-tabla">
-        <table cellpadding="5" class="tr">
-            <tr >
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Email</th>
-                <th>Dirección</th>
-                <th>Ciudad</th>
-                <th>País</th>
-                <th>Industria</th>
-            </tr>
-            <tr>
-                <td><?php /*echo $row["nombre"]; */?></td>
-                <td><?php /*echo $row["telefono"]; */?></td>
-                <td><?php /*echo $row["email"]; */?></td>
-                <td><?php /*echo $row["direccion"]; */?></td>
-                <td><?php /*echo $row["ciudad"]; */?></td>
-                <td><?php /*echo $row["pais"];*/ ?></td>
-                <td><?php /*echo $row["industria"]; */?></td>
-            </tr>
-        </table>
-        
-    </main>
+         <form method="POST">
+        <select name="select" id="">
+            <option value="AutoPartes">AutoPartes</option>
+            <option value="Repuestos">Repuestos</option>
+            <option value="Importación">Importación</option>
+            <option value="Neumáticos">Neumáticos</option>
+            <option value="Servicios">Servicios</option>
+            <option value="parabrisas">Parabrisas</option>
+       
+        </select>
+        <button type="submit">buscar</button>
 
-    <footer class="main-footer">
-        <p>&copy; <?php echo date("Y"); ?> AlmacenAutos</p>
-    </footer>
+    </form>
+    <main class="welcome-container-tabla">
+
+    </main>
+    <h3>Resultados:</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>NIT</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Industria</th>
+            <th>Calificación</th>
+        </tr>
+        <?php if (!empty($resultados)): ?>
+            <?php foreach ($resultados as $fila): ?>
+                <tr>
+                    <td><?= $fila['id_proveedor'] ?></td>
+                    <td><?= $fila['nombre_proveedor'] ?></td>
+                    <td><?= $fila['nit'] ?></td>
+                    <td><?= $fila['telefono'] ?></td>
+                    <td><?= $fila['email'] ?></td>
+                    <td><?= $fila['direccion'] ?></td>
+                    <td><?= $fila['ciudad'] ?></td>
+                    <td><?= $fila['industria'] ?></td>
+                    <td><?= $fila['calificacion'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr><td colspan="9">No se encontraron proveedores</td></tr>
+        <?php endif; ?>
+    </table>
 
 </body>
 </html>

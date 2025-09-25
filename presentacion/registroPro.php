@@ -1,23 +1,5 @@
 <?php
-
-if($_POST)
-    $nom = $_POST['nombre'];
-    $pat = $_POST['telefono'];
-    $mat = $_POST['email'];
-    $tel = $_POST['direccion'];
-    $cui = $_POST['cuidad'];
-    $pais = $_POST['pais'];
-    $tipoPro = $_POST['tipoProvedor'];
-
-    $con = "INSERT INTO vendedores (nombre, paterno, materno, telefono) VALUES ('$nom', '$pat', '$mat', '$tel')";
-
-    $res = mysqli_query($db, $con);
-
-    if ($res) {
-        echo "<script> alert('Se registró vendedor'); </script>";
-    } else {
-        echo "<script> alert('No see registró vendedor'); </script>";
-    }
+require "../negocio/resgitroPro.php";
 ?>
 
 <!DOCTYPE html>
@@ -34,10 +16,14 @@ if($_POST)
         <h1>Registro de nuevos Provedores</h1>
     <main class="welcome-container">
        <form method="POST" class="formulario">
-        <label for="">Nombre:</label>
-        <input type="text" name="nombre" required><br>
+
+        <label for="">Nombre del proveedor:</label>
+        <input type="text" name="nombre_proveedor" required><br>
         
-        <label for="">Teléfono:</label>
+        <label for="">nit:</label>
+        <input type="text" name="nit" id="nit" required><br>
+
+           <label for="">telefono: </label>
         <input type="text" name="telefono"><br>
         
         <label for=""> Email:</label>
@@ -47,13 +33,13 @@ if($_POST)
         <input type="text" name="direccion"><br>
         
         <label for="">Ciudad:</label>
-        <input type="text" name="ciudad"><br>
+        <input type="text" name="cuidad"><br>
         
-        <label for="">País:</label>
-        <input type="text" name="pais"><br>
+        <label for="">industria</label>
+        <input type="text" name="industria"><br>
         
-        <label for="">Tipo de Provedor</label>
-        <input type="text" name = "tipoProvedor">
+        <label for="">calificacion</label>
+        <input type="text" name = "calificacion">
         
         <button type="submit">Guardar</button>
     </form>

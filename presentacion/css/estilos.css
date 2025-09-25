@@ -118,7 +118,3 @@ form button:hover {
 .welcome-container-tabla{
     display: block;
 }
-tr{
-    display: flex;
-    align-items: self-start;
-}
