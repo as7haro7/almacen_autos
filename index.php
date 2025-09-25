@@ -22,7 +22,7 @@ if (isset($_SESSION['usuario_id'])) {
 
     <header class="main-header">
         <nav>
-            <a href="presentacion/login.php" class="login-button">Iniciar Sesión</a>
+            <a href="presentacion/ver_inventario.php" class="login-button">Iniciar Sesión</a>
         </nav>
     </header>
 

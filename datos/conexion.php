@@ -5,7 +5,7 @@ class Conexion {
         $host = 'localhost';
         $db_name = 'almacen_autos';
         $username = 'root';
-        $password = '123456'; 
+        $password = ''; 
 
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db_name;charset=utf8", $username, $password);
