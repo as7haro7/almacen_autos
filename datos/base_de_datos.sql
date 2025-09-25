@@ -25,12 +25,6 @@ CREATE TABLE `roles` (
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion`) VALUES
-(1, 'Administrador', 'Acceso completo al sistema'),
-(2, 'Gerente', 'Gestión de inventario, ventas y reportes'),
-(3, 'Vendedor', 'Gestión de ventas y clientes'),
-(4, 'Almacenero', 'Gestión de inventario y recepción'),
-(5, 'Comprador', 'Gestión de compras y proveedores');
 
 -- --------------------------------------------------------
 -- Estructura de tabla para la tabla `sucursales`
@@ -41,12 +35,6 @@ CREATE TABLE `sucursales` (
   `nombre` varchar(100) NOT NULL,
   `direccion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `sucursales` (`id_sucursal`, `nombre`, `direccion`) VALUES
-(1, 'Sucursal La Paz - Centro', 'Av. Mariscal Santa Cruz 1234, La Paz'),
-(2, 'Sucursal El Alto', 'Av. 6 de Marzo 567, El Alto'),
-(3, 'Sucursal Cochabamba', 'Av. América 890, Cochabamba'),
-(4, 'Sucursal Santa Cruz', 'Av. Cristo Redentor 432, Santa Cruz');
 
 -- --------------------------------------------------------
 -- Estructura de tabla para la tabla `usuarios`
@@ -65,13 +53,6 @@ CREATE TABLE `usuarios` (
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `nombre_usuario`, `contrasena_hash`, `nombre_completo`, `ci`, `email`, `celular`, `estado`) VALUES
-(1, 1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Juan Carlos Mamani', '12345678LP', 'admin@almacenautos.bo', '70123456', 'activo'),
-(2, 2, 'gerente1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'María Elena Quispe', '87654321CB', 'gerente@almacenautos.bo', '71987654', 'activo'),
-(3, 3, 'vendedor1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Carlos Mendoza Rojas', '11223344SC', 'ventas@almacenautos.bo', '72334455', 'activo'),
-(4, 4, 'almacen1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Ana Lucía Condori', '55667788TJ', 'almacen@almacenautos.bo', '76554433', 'activo'),
-(5, 5, 'comprador1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Roberto Flores Nina', '99887766OR', 'compras@almacenautos.bo', '75998877', 'activo');
-
 -- --------------------------------------------------------
 -- Estructura de tabla para la tabla `categorias`
 -- --------------------------------------------------------
@@ -81,16 +62,6 @@ CREATE TABLE `categorias` (
   `nombre_categoria` varchar(100) NOT NULL,
   `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion`) VALUES
-(1, 'Motor', 'Componentes del sistema motor'),
-(2, 'Transmisión', 'Caja de cambios y componentes'),
-(3, 'Frenos', 'Sistema de frenos y componentes'),
-(4, 'Suspensión', 'Amortiguadores y componentes de suspensión'),
-(5, 'Eléctrico', 'Sistema eléctrico del vehículo'),
-(6, 'Carrocería', 'Partes externas del vehículo'),
-(7, 'Neumáticos', 'Llantas y neumáticos'),
-(8, 'Accesorios', 'Accesorios diversos para vehículos');
 
 -- --------------------------------------------------------
 -- Estructura de tabla para la tabla `proveedores`
@@ -108,13 +79,6 @@ CREATE TABLE `proveedores` (
   `calificacion` decimal(3,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `proveedores` (`id_proveedor`, `nombre_proveedor`, `nit`, `telefono`, `email`, `direccion`, `ciudad`, `industria`, `calificacion`) VALUES
-(1, 'Autopartes Bolivia SRL', '1023456789015', '2-2234567', 'ventas@autopartesbo.com', 'Av. Buenos Aires 1234', 'La Paz', 'Autopartes', 4.50),
-(2, 'Repuestos Andinos S.A.', '2034567890016', '4-4123456', 'info@repuestosandinos.com', 'Zona Norte Km 3', 'Cochabamba', 'Repuestos', 4.20),
-(3, 'Importadora Oriental', '3045678901017', '3-3987654', 'oriental@repuestos.bo', 'Av. Roca y Coronado 567', 'Santa Cruz', 'Importación', 4.80),
-(4, 'Neumáticos del Sur', '4056789012018', '4-6543210', 'sur@neumaticos.bo', 'Circunvalación Este 890', 'Cochabamba', 'Neumáticos', 4.10),
-(5, 'Talleres Unidos', '5067890123019', '2-7890123', 'unidos@talleres.bo', 'Villa Fátima 432', 'La Paz', 'Servicios', 3.90);
-
 -- --------------------------------------------------------
 -- Estructura de tabla para la tabla `articulos`
 -- --------------------------------------------------------
@@ -128,18 +92,6 @@ CREATE TABLE `articulos` (
   `precio_venta` decimal(10,2) NOT NULL,
   `costo_compra_promedio` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `articulos` (`id_articulo`, `id_categoria`, `codigo_articulo`, `descripcion`, `codigo_barras_qr`, `precio_venta`, `costo_compra_promedio`) VALUES
-(1, 1, 'MOT001', 'Filtro de aceite Toyota Hilux', '7891234567890', 85.00, 60.00),
-(2, 1, 'MOT002', 'Bujía NGK Iridium', '7892345678901', 45.00, 28.00),
-(3, 2, 'TRA001', 'Kit Embrague Suzuki Alto', '7893456789012', 680.00, 480.00),
-(4, 3, 'FRE001', 'Pastillas Freno Delanteras Toyota', '7894567890123', 320.00, 220.00),
-(5, 4, 'SUS001', 'Amortiguador Trasero Nissan', '7895678901234', 420.00, 280.00),
-(6, 5, 'ELE001', 'Batería 12V 65Ah', '7896789012345', 550.00, 380.00),
-(7, 6, 'CAR001', 'Parachoque Delantero Hyundai', '7897890123456', 1250.00, 850.00),
-(8, 7, 'NEU001', 'Neumático 185/65R14', '7898901234567', 480.00, 320.00),
-(9, 8, 'ACC001', 'Alfombrillas Universales', '7899012345678', 65.00, 40.00),
-(10, 1, 'MOT003', 'Aceite Motor 15W40 5L', '7890123456789', 180.00, 120.00);
 
 -- --------------------------------------------------------
 -- Estructura de tabla para la tabla `clientes`
@@ -156,13 +108,6 @@ CREATE TABLE `clientes` (
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `clientes` (`id_cliente`, `nombre_completo`, `ci_nit`, `celular`, `email`, `direccion`, `ciudad`) VALUES
-(1, 'Luis Fernando Torrez', '6677889LP', '70456789', 'luis.torrez@email.com', 'Zona Sur, Calle 21 #456', 'La Paz'),
-(2, 'Carmen Rosa Velasco', '7788990CB', '71567890', 'carmen.velasco@gmail.com', 'Av. Heroínas 789', 'Cochabamba'),
-(3, 'Pedro Alejandro Cruz', '8899001SC', '72678901', 'pedro.cruz@hotmail.com', 'Barrio Equipetrol Norte', 'Santa Cruz'),
-(4, 'Silvia Patricia Mamani', '9900112TJ', '73789012', 'silvia.mamani@yahoo.com', 'Villa Adela, Calle 15', 'El Alto'),
-(5, 'Jorge Antonio Flores', '1011223OR', '74890123', 'jorge.flores@outlook.com', 'Av. Villarroel 1234', 'Oruro');
-
 -- --------------------------------------------------------
 -- Estructura de tabla para la tabla `inventario_stock`
 -- --------------------------------------------------------
@@ -177,18 +122,6 @@ CREATE TABLE `inventario_stock` (
   `ubicacion_exacta` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `inventario_stock` (`id_stock`, `id_articulo`, `id_sucursal`, `cantidad`, `stock_minimo_rojo`, `stock_minimo_naranja`, `ubicacion_exacta`) VALUES
-(1, 1, 1, 25, 3, 6, 'Estante A-1-2'),
-(2, 2, 1, 45, 5, 10, 'Estante A-2-1'),
-(3, 3, 1, 8, 2, 4, 'Estante B-1-3'),
-(4, 4, 1, 15, 3, 6, 'Estante B-2-1'),
-(5, 5, 1, 12, 2, 5, 'Estante C-1-2'),
-(6, 6, 2, 18, 3, 6, 'Depósito A-Sección 1'),
-(7, 7, 2, 5, 1, 3, 'Depósito B-Área Grande'),
-(8, 8, 3, 32, 4, 8, 'Área Neumáticos A1'),
-(9, 9, 1, 50, 10, 20, 'Estante D-1-1'),
-(10, 10, 1, 35, 5, 10, 'Depósito Aceites');
-
 -- --------------------------------------------------------
 -- Estructura de tabla para las órdenes de compra
 -- --------------------------------------------------------
@@ -202,11 +135,6 @@ CREATE TABLE `ordenes_compra` (
   `estado` enum('pendiente','recibida','cancelada') NOT NULL DEFAULT 'pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `ordenes_compra` (`id_orden_compra`, `id_proveedor`, `id_usuario`, `fecha_emision`, `monto_total`, `estado`) VALUES
-(1, 1, 5, '2025-09-20', 3600.00, 'recibida'),
-(2, 2, 5, '2025-09-22', 2800.00, 'pendiente'),
-(3, 3, 5, '2025-09-24', 4200.00, 'pendiente');
-
 -- --------------------------------------------------------
 -- Estructura de tabla para el detalle de órdenes de compra
 -- --------------------------------------------------------
@@ -218,15 +146,6 @@ CREATE TABLE `ordenes_compra_detalle` (
   `cantidad` int(11) NOT NULL,
   `costo_unitario` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `ordenes_compra_detalle` (`id_detalle`, `id_orden_compra`, `id_articulo`, `cantidad`, `costo_unitario`) VALUES
-(1, 1, 1, 60, 60.00),
-(2, 1, 2, 100, 28.00),
-(3, 1, 10, 20, 120.00),
-(4, 2, 3, 5, 480.00),
-(5, 2, 4, 12, 220.00),
-(6, 3, 6, 10, 380.00),
-(7, 3, 8, 8, 320.00);
 
 -- --------------------------------------------------------
 -- Pedidos de venta
@@ -241,11 +160,6 @@ CREATE TABLE `pedidos_venta` (
   `estado` enum('procesando','enviado','entregado','cancelado') NOT NULL DEFAULT 'procesando'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `pedidos_venta` (`id_pedido`, `id_cliente`, `id_usuario`, `fecha_pedido`, `monto_total`, `estado`) VALUES
-(1, 1, 3, '2025-09-23 10:30:00', 450.00, 'entregado'),
-(2, 2, 3, '2025-09-24 14:15:00', 680.00, 'procesando'),
-(3, 3, 3, '2025-09-24 16:45:00', 740.00, 'enviado');
-
 -- --------------------------------------------------------
 -- Detalle de pedidos de venta
 -- --------------------------------------------------------
@@ -258,13 +172,6 @@ CREATE TABLE `pedidos_venta_detalle` (
   `precio_unitario` decimal(10,2) NOT NULL,
   `descuento` decimal(5,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `pedidos_venta_detalle` (`id_detalle`, `id_pedido`, `id_articulo`, `cantidad`, `precio_unitario`, `descuento`) VALUES
-(1, 1, 1, 3, 85.00, 0.00),
-(2, 1, 2, 4, 45.00, 5.00),
-(3, 2, 3, 1, 680.00, 0.00),
-(4, 3, 4, 2, 320.00, 0.00),
-(5, 3, 9, 2, 65.00, 10.00);
 
 -- --------------------------------------------------------
 -- Facturas de proveedor
@@ -281,9 +188,6 @@ CREATE TABLE `facturas_proveedor` (
   `estado_pago` enum('pendiente','pagada') NOT NULL DEFAULT 'pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `facturas_proveedor` (`id_factura_proveedor`, `id_orden_compra`, `numero_factura`, `codigo_autorizacion`, `codigo_control`, `fecha_emision`, `monto_total`, `estado_pago`) VALUES
-(1, 1, '001-002-0001234', '29040011007', 'CF-84-A2-E5', '2025-09-21', 3600.00, 'pagada');
-
 -- --------------------------------------------------------
 -- Citas de mantenimiento
 -- --------------------------------------------------------
@@ -296,11 +200,6 @@ CREATE TABLE `citas_mantenimiento` (
   `fecha_hora_cita` datetime NOT NULL,
   `estado` enum('agendada','en_proceso','completada','cancelada') NOT NULL DEFAULT 'agendada'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `citas_mantenimiento` (`id_cita`, `id_cliente`, `vehiculo_descripcion`, `motivo`, `fecha_hora_cita`, `estado`) VALUES
-(1, 1, 'Toyota Hilux 2020, Placa 1234-ABC', 'Cambio de aceite y filtros', '2025-09-25 09:00:00', 'agendada'),
-(2, 2, 'Suzuki Alto 2019, Placa 5678-DEF', 'Revisión sistema de frenos', '2025-09-25 14:30:00', 'agendada'),
-(3, 3, 'Nissan Frontier 2021, Placa 9012-GHI', 'Mantenimiento preventivo 20,000 km', '2025-09-26 10:15:00', 'agendada');
 
 -- --------------------------------------------------------
 -- Movimientos de inventario
@@ -318,30 +217,17 @@ CREATE TABLE `movimientos_inventario` (
   `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `movimientos_inventario` (`id_movimiento`, `id_articulo`, `id_sucursal`, `id_usuario`, `tipo_movimiento`, `cantidad`, `referencia_id`, `observaciones`) VALUES
-(1, 1, 1, 4, 'compra', 60, 1, 'Ingreso por OC #1'),
-(2, 1, 1, 3, 'venta', -3, 1, 'Venta pedido #1'),
-(3, 2, 1, 4, 'compra', 100, 1, 'Ingreso por OC #1'),
-(4, 2, 1, 3, 'venta', -4, 1, 'Venta pedido #1'),
-(5, 3, 1, 3, 'venta', -1, 2, 'Venta pedido #2');
-
 -- --------------------------------------------------------
 -- Control de asistencia
 -- --------------------------------------------------------
 
 CREATE TABLE `control_asistencia` (
-  `id_asistencia` int(11) NOT NULL,
+  `id_asistencia` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
   `fecha_hora_ingreso` datetime NOT NULL,
-  `fecha_hora_salida` datetime DEFAULT NULL
+  `fecha_hora_salida` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_asistencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `control_asistencia` (`id_asistencia`, `id_usuario`, `fecha_hora_ingreso`, `fecha_hora_salida`) VALUES
-(1, 3, '2025-09-24 08:30:00', '2025-09-24 18:15:00'),
-(2, 4, '2025-09-24 08:45:00', '2025-09-24 17:30:00'),
-(3, 5, '2025-09-24 09:00:00', '2025-09-24 17:45:00'),
-(4, 3, '2025-09-25 08:35:00', NULL),
-(5, 4, '2025-09-25 08:50:00', NULL);
 
 -- --------------------------------------------------------
 -- Auditoría
@@ -357,11 +243,236 @@ CREATE TABLE `auditoria` (
   `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `tabla_afectada`, `registro_afectado_id`, `detalles`) VALUES
-(1, 1, 'CREATE', 'articulos', 1, 'Creación de artículo: Filtro de aceite Toyota Hilux'),
-(2, 3, 'UPDATE', 'inventario_stock', 1, 'Actualización stock por venta - Cantidad: 28 -> 25'),
-(3, 4, 'CREATE', 'movimientos_inventario', 1, 'Movimiento de compra registrado'),
-(4, 5, 'CREATE', 'ordenes_compra', 1, 'Nueva orden de compra creada');
+
+
+-- Inserción de datos para ALMACENES DE AUTOS TOYOSA
+-- Datos realistas para repuestos y mantenimiento automotriz
+
+-- Insertar Roles
+INSERT INTO `roles` (`nombre_rol`, `descripcion`) VALUES
+('Administrador', 'Acceso completo al sistema, gestión de usuarios y configuraciones'),
+('Gerente', 'Supervisión de operaciones, reportes y gestión de personal'),
+('Vendedor', 'Gestión de ventas, atención al cliente y pedidos'),
+('Almacenero', 'Control de inventario, recepción y despacho de mercancía'),
+('Técnico', 'Servicios de mantenimiento y reparación de vehículos'),
+('Contador', 'Gestión financiera, cuentas por pagar y reportes contables');
+
+-- Insertar Usuarios
+INSERT INTO `usuarios` (`id_rol`, `nombre_usuario`, `contrasena_hash`, `nombre_completo`, `email`, `estado`) VALUES
+(1, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Carlos Mendoza Rodriguez', 'admin@toyosa.com', 'activo'),
+(2, 'gerente01', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Maria Elena Gutierrez', 'gerencia@toyosa.com', 'activo'),
+(3, 'vendedor01', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Juan Pablo Morales', 'ventas1@toyosa.com', 'activo'),
+(3, 'vendedor02', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Ana Sofia Vargas', 'ventas2@toyosa.com', 'activo'),
+(4, 'almacenero01', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Roberto Castro Lima', 'almacen@toyosa.com', 'activo'),
+(5, 'tecnico01', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Miguel Angel Quispe', 'taller@toyosa.com', 'activo'),
+(6, 'contador01', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Patricia Fernandez Soto', 'contabilidad@toyosa.com', 'activo');
+
+-- Insertar Sucursales
+INSERT INTO `sucursales` (`nombre`, `direccion`) VALUES
+('TOYOSA Central', 'Av. 6 de Agosto #2547, Zona San Jorge, La Paz'),
+('TOYOSA El Alto', 'Av. Juan Pablo II #1234, Ciudad Satélite, El Alto'),
+('TOYOSA Sur', 'Av. Los Sargentos #890, Zona Calacoto, La Paz');
+
+-- Insertar Categorías de Repuestos
+INSERT INTO `categorias` (`nombre_categoria`, `descripcion`) VALUES
+('Motor y Transmisión', 'Componentes del motor, filtros, aceites y sistema de transmisión'),
+('Sistema de Frenos', 'Pastillas, discos, líquido de frenos y componentes del sistema'),
+('Suspensión y Dirección', 'Amortiguadores, resortes, rótulas y componentes de dirección'),
+('Sistema Eléctrico', 'Baterías, alternadores, motores de arranque y componentes eléctricos'),
+('Carrocería y Exterior', 'Parachoques, faros, espejos y accesorios de carrocería'),
+('Interior y Confort', 'Asientos, tapicería, aire acondicionado y accesorios internos'),
+('Neumáticos y Llantas', 'Neumáticos, llantas de aleación y válvulas'),
+('Herramientas y Equipos', 'Herramientas de taller y equipos de diagnóstico'),
+('Lubricantes', 'Aceites, grasas y líquidos automotrices'),
+('Filtros', 'Filtros de aire, aceite, combustible y habitáculo');
+
+-- Insertar Proveedores
+INSERT INTO `proveedores` (`nombre_proveedor`, `nit`, `telefono`, `email`, `industria`, `calificacion`) VALUES
+('Toyota Bolivia S.A.', '1234567890', '2-2345678', 'ventas@toyota.com.bo', 'Automotriz Original', 4.8),
+('Repuestos Génova', '2345678901', '2-2456789', 'contacto@genova.com', 'Repuestos Aftermarket', 4.2),
+('Bosch Bolivia', '3456789012', '2-2567890', 'bolivia@bosch.com', 'Componentes Automotrices', 4.6),
+('Castrol Lubricantes', '4567890123', '2-2678901', 'ventas@castrol.bo', 'Lubricantes y Químicos', 4.4),
+('Bridgestone Andes', '5678901234', '2-2789012', 'info@bridgestone.bo', 'Neumáticos', 4.5),
+('Denso Parts Bolivia', '6789012345', '2-2890123', 'bolivia@denso.com', 'Componentes Eléctricos', 4.3),
+('Mann Filter Bolivia', '7890123456', '2-2901234', 'contacto@mannfilter.bo', 'Filtros Automotrices', 4.1),
+('SKF Rodamientos', '8901234567', '2-3012345', 'ventas@skf.bo', 'Rodamientos y Repuestos', 4.0);
+
+-- Insertar Artículos
+INSERT INTO `articulos` (`id_categoria`, `codigo_articulo`, `descripcion`, `codigo_barras_qr`, `precio_venta`, `costo_compra_promedio`) VALUES
+-- Motor y Transmisión
+(1, 'MOT-001', 'Filtro de Aceite Toyota Hilux 2.4 Diesel', '7501234567890', 85.00, 65.00),
+(1, 'MOT-002', 'Aceite Motor 15W-40 Mineral 4L Castrol', '7501234567891', 180.00, 140.00),
+(1, 'MOT-003', 'Correa de Distribución Toyota Fortuner 2.7', '7501234567892', 450.00, 350.00),
+(1, 'MOT-004', 'Bomba de Agua Toyota Land Cruiser 4.0', '7501234567893', 520.00, 400.00),
+
+-- Sistema de Frenos
+(2, 'FRE-001', 'Pastillas Freno Delanteras Toyota RAV4', '7501234567894', 280.00, 220.00),
+(2, 'FRE-002', 'Disco Freno Delantero Toyota Corolla', '7501234567895', 350.00, 270.00),
+(2, 'FRE-003', 'Líquido Frenos DOT 4 Bosch 1L', '7501234567896', 95.00, 75.00),
+(2, 'FRE-004', 'Pastillas Freno Traseras Toyota Prado', '7501234567897', 320.00, 250.00),
+
+-- Suspensión y Dirección
+(3, 'SUS-001', 'Amortiguador Delantero Toyota Hilux 4x4', '7501234567898', 680.00, 530.00),
+(3, 'SUS-002', 'Rótula Superior Toyota Land Cruiser', '7501234567899', 150.00, 115.00),
+(3, 'SUS-003', 'Resorte Espiral Delantero Toyota Yaris', '7501234567900', 220.00, 170.00),
+
+-- Sistema Eléctrico
+(4, 'ELE-001', 'Batería 12V 65Ah Toyota Hilux', '7501234567901', 850.00, 650.00),
+(4, 'ELE-002', 'Alternador Toyota Corolla 1.8', '7501234567902', 1200.00, 950.00),
+(4, 'ELE-003', 'Motor Arranque Toyota RAV4 2.0', '7501234567903', 980.00, 750.00),
+(4, 'ELE-004', 'Sensor Oxígeno Toyota Camry 2.4', '7501234567904', 420.00, 320.00),
+
+-- Neumáticos y Llantas
+(7, 'NEU-001', 'Neumático 265/65R17 Bridgestone Dueler', '7501234567905', 1200.00, 950.00),
+(7, 'NEU-002', 'Neumático 215/60R16 Michelin Energy', '7501234567906', 890.00, 680.00),
+(7, 'NEU-003', 'Llanta Aleación 16" Toyota Original', '7501234567907', 1800.00, 1400.00),
+
+-- Lubricantes
+(9, 'LUB-001', 'Aceite Transmisión Automática Toyota ATF', '7501234567908', 120.00, 95.00),
+(9, 'LUB-002', 'Grasa Multiuso Chassis Toyota 500g', '7501234567909', 65.00, 50.00),
+(9, 'LUB-003', 'Refrigerante Toyota Long Life 1L', '7501234567910', 85.00, 65.00),
+
+-- Filtros
+(10, 'FIL-001', 'Filtro Aire Toyota Hilux 2.4 Diesel', '7501234567911', 145.00, 110.00),
+(10, 'FIL-002', 'Filtro Combustible Toyota Prado 3.0', '7501234567912', 180.00, 140.00),
+(10, 'FIL-003', 'Filtro Habitáculo Toyota Corolla', '7501234567913', 95.00, 75.00);
+
+-- Insertar Stock por Sucursal
+INSERT INTO `inventario_stock` (`id_articulo`, `id_sucursal`, `cantidad`, `stock_minimo_rojo`, `stock_minimo_naranja`, `ubicacion_exacta`) VALUES
+-- Sucursal Central
+(1, 1, 25, 3, 6, 'A1-E2-N3'),
+(2, 1, 40, 5, 10, 'A1-E1-N1'),
+(3, 1, 8, 2, 4, 'A2-E3-N2'),
+(4, 1, 12, 2, 5, 'A2-E2-N4'),
+(5, 1, 18, 3, 6, 'B1-E1-N2'),
+(6, 1, 15, 3, 6, 'B1-E2-N1'),
+(7, 1, 30, 5, 10, 'A1-E1-N2'),
+(8, 1, 22, 4, 8, 'B1-E1-N3'),
+
+-- Sucursal El Alto
+(1, 2, 15, 3, 6, 'EA-A1-N1'),
+(2, 2, 25, 5, 10, 'EA-A1-N2'),
+(9, 2, 10, 2, 4, 'EA-B1-N1'),
+(10, 2, 8, 2, 4, 'EA-B1-N2'),
+(11, 2, 6, 2, 4, 'EA-B2-N1'),
+(17, 2, 12, 2, 4, 'EA-C1-N1'),
+(18, 2, 8, 2, 4, 'EA-C1-N2'),
+
+-- Sucursal Sur
+(1, 3, 20, 3, 6, 'SUR-A1-N1'),
+(2, 3, 35, 5, 10, 'SUR-A1-N2'),
+(12, 3, 5, 1, 3, 'SUR-B1-N1'),
+(13, 3, 4, 1, 3, 'SUR-B1-N2'),
+(14, 3, 6, 1, 3, 'SUR-B2-N1'),
+(19, 3, 15, 3, 6, 'SUR-C1-N1'),
+(20, 3, 12, 3, 6, 'SUR-C1-N2');
+
+-- Insertar Clientes
+INSERT INTO `clientes` (`nombre_completo`, `numero_documento`, `telefono`, `email`, `direccion`) VALUES
+('Juan Carlos Mendoza Pérez', '4568123-LP', '70123456', 'jmendoza@email.com', 'Zona Miraflores, Calle 15 #234'),
+('María Fernanda López Silva', '3245789-LP', '71234567', 'mlopez@email.com', 'Zona San Pedro, Av. Buenos Aires #567'),
+('Roberto Quispe Mamani', '7891234-LP', '72345678', 'rquispe@email.com', 'El Alto, Villa Dolores, Calle 8 #123'),
+('Ana Patricia Vargas Cruz', '5678234-LP', '73456789', 'avargas@email.com', 'Zona Sur, Calacoto, Calle 21 #890'),
+('Luis Alberto Morales Inca', '9012345-LP', '74567890', 'lmorales@email.com', 'Zona Norte, Villa Fátima, Av. Saavedra #456'),
+('Carmen Rosa Delgado Flores', '2345678-LP', '75678901', 'cdelgado@email.com', 'Zona Centro, Calle Sagárnaga #789'),
+('Pedro Antonio Gutiérrez Luna', '6789012-LP', '76789012', 'pgutierrez@email.com', 'Zona Sopocachi, Calle Fernando Guachalla #321'),
+('Empresa Transporte La Paz LTDA', '1023456789012', '2-2345678', 'transporte@lapaz.com', 'Zona Industrial, Av. Argentina #1234');
+
+-- Insertar Citas de Mantenimiento
+INSERT INTO `citas_mantenimiento` (`id_cliente`, `vehiculo_descripcion`, `motivo`, `fecha_hora_cita`, `estado`) VALUES
+(1, 'Toyota Hilux 2020, Placa 1234-ABC', 'Mantenimiento preventivo 10,000 km', '2025-09-25 09:00:00', 'agendada'),
+(2, 'Toyota Corolla 2019, Placa 5678-DEF', 'Cambio de pastillas de freno', '2025-09-25 14:30:00', 'agendada'),
+(3, 'Toyota RAV4 2021, Placa 9012-GHI', 'Revisión sistema eléctrico', '2025-09-26 08:30:00', 'agendada'),
+(4, 'Toyota Prado 2018, Placa 3456-JKL', 'Cambio de aceite y filtros', '2025-09-26 16:00:00', 'agendada'),
+(5, 'Toyota Land Cruiser 2022, Placa 7890-MNO', 'Alineación y balanceado', '2025-09-27 10:00:00', 'agendada');
+
+-- Insertar Órdenes de Compra
+INSERT INTO `ordenes_compra` (`id_proveedor`, `id_usuario`, `fecha_emision`, `monto_total`, `estado`) VALUES
+(1, 2, '2025-09-20', 15680.00, 'recibida'),
+(2, 2, '2025-09-22', 8950.00, 'pendiente'),
+(3, 2, '2025-09-23', 5420.00, 'recibida'),
+(4, 2, '2025-09-24', 3200.00, 'pendiente');
+
+-- Insertar Detalles de Órdenes de Compra
+INSERT INTO `ordenes_compra_detalle` (`id_orden_compra`, `id_articulo`, `cantidad`, `costo_unitario`) VALUES
+-- Orden 1 - Toyota Bolivia
+(1, 1, 50, 65.00),
+(1, 3, 20, 350.00),
+(1, 4, 15, 400.00),
+
+-- Orden 2 - Repuestos Génova
+(2, 5, 30, 220.00),
+(2, 6, 25, 270.00),
+
+-- Orden 3 - Bosch Bolivia
+(3, 7, 60, 75.00),
+(3, 15, 8, 320.00),
+
+-- Orden 4 - Castrol
+(4, 2, 100, 140.00),
+(4, 19, 50, 95.00);
+
+-- Insertar Facturas de Proveedor
+INSERT INTO `facturas_proveedor` (`id_orden_compra`, `numero_factura`, `codigo_autorizacion`, `codigo_control`, `fecha_emision`, `monto_total`, `estado_pago`) VALUES
+(1, '001-002-0000234', '29040011007', 'F7-A8-B9-C2', '2025-09-20', 15680.00, 'pagada'),
+(3, '001-003-0000567', '29040011008', 'G3-H4-I5-J6', '2025-09-23', 5420.00, 'pendiente');
+
+-- Insertar Pedidos de Venta
+INSERT INTO `pedidos_venta` (`id_cliente`, `id_usuario`, `fecha_pedido`, `monto_total`, `estado`) VALUES
+(1, 3, '2025-09-24 10:30:00', 765.00, 'procesando'),
+(2, 4, '2025-09-24 15:45:00', 1450.00, 'enviado'),
+(3, 3, '2025-09-24 16:20:00', 280.00, 'entregado');
+
+-- Insertar Detalles de Pedidos de Venta
+INSERT INTO `pedidos_venta_detalle` (`id_pedido`, `id_articulo`, `cantidad`, `precio_unitario`, `descuento`) VALUES
+(1, 1, 2, 85.00, 0.00),
+(1, 7, 1, 95.00, 0.00),
+(1, 2, 3, 180.00, 5.00),
+
+(2, 5, 1, 280.00, 0.00),
+(2, 17, 1, 1200.00, 2.00),
+
+(3, 5, 1, 280.00, 0.00);
+
+-- Insertar Movimientos de Inventario
+INSERT INTO `movimientos_inventario` (`id_articulo`, `id_sucursal`, `id_usuario`, `tipo_movimiento`, `cantidad`, `referencia_id`, `fecha_hora`) VALUES
+-- Compras
+(1, 1, 5, 'compra', 50, 1, '2025-09-20 14:30:00'),
+(3, 1, 5, 'compra', 20, 1, '2025-09-20 14:35:00'),
+(7, 1, 5, 'compra', 60, 3, '2025-09-23 11:20:00'),
+
+-- Ventas
+(1, 1, 3, 'venta', -2, 1, '2025-09-24 10:35:00'),
+(7, 1, 3, 'venta', -1, 1, '2025-09-24 10:36:00'),
+(5, 1, 4, 'venta', -1, 2, '2025-09-24 15:50:00'),
+
+-- Transferencias
+(1, 1, 5, 'transferencia', -10, NULL, '2025-09-23 09:00:00'),
+(1, 2, 5, 'transferencia', 10, NULL, '2025-09-23 09:05:00'),
+
+-- Ajustes
+(2, 1, 5, 'ajuste', 5, NULL, '2025-09-22 16:00:00'),
+(11, 3, 5, 'dañado', -1, NULL, '2025-09-21 12:30:00');
+
+-- Insertar Control de Asistencia
+INSERT INTO `control_asistencia` (`id_usuario`, `fecha_hora_ingreso`, `fecha_hora_salida`) VALUES
+(1, '2025-09-24 08:00:00', '2025-09-24 18:00:00'),
+(2, '2025-09-24 08:15:00', '2025-09-24 17:45:00'),
+(3, '2025-09-24 08:30:00', '2025-09-24 17:30:00'),
+(4, '2025-09-24 08:20:00', '2025-09-24 17:40:00'),
+(5, '2025-09-24 07:45:00', '2025-09-24 17:15:00'),
+(6, '2025-09-24 08:10:00', '2025-09-24 18:10:00'),
+(7, '2025-09-24 09:00:00', '2025-09-24 17:00:00');
+
+-- Insertar Auditoría
+INSERT INTO `auditoria` (`id_usuario`, `accion`, `tabla_afectada`, `registro_afectado_id`, `fecha_hora`) VALUES
+(1, 'CREAR_USUARIO', 'usuarios', 7, '2025-09-20 10:00:00'),
+(2, 'CREAR_ORDEN_COMPRA', 'ordenes_compra', 1, '2025-09-20 11:30:00'),
+(5, 'RECIBIR_MERCANCIA', 'inventario_stock', 1, '2025-09-20 14:30:00'),
+(3, 'PROCESAR_VENTA', 'pedidos_venta', 1, '2025-09-24 10:30:00'),
+(5, 'TRANSFERIR_STOCK', 'movimientos_inventario', 8, '2025-09-23 09:00:00'),
+(2, 'MODIFICAR_ARTICULO', 'articulos', 15, '2025-09-23 15:45:00');
+
 
 -- --------------------------------------------------------
 -- ÍNDICES Y CLAVES PRIMARIAS
@@ -546,6 +657,8 @@ ALTER TABLE `pedidos_venta_detalle`
 -- Filtros para la tabla `usuarios`
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+
 
 
 COMMIT;
