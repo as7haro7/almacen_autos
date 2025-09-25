@@ -28,6 +28,6 @@ $ordenes = $service->listarOrdenes();
 <h2>Órdenes de Compra</h2>
 <ul>
     <?php foreach ($ordenes as $orden) : ?>
-        <li>ID: <?= $orden['id_orden_compra']; ?> - Proveedor: <?= $orden['id_proveedor']; ?> - Usuario: <?= $orden['id_usuario']; ?> - Fecha: <?= $orden['fecha_emision']; ?> - Monto: <?= $orden['monto_total']; ?> - Estado: <?= $orden['estado']; ?></li>
+        <ol>ID: <?= $orden['id_orden_compra']; ?> - Proveedor: <?= $orden['id_proveedor']; ?> - Usuario: <?= $orden['id_usuario']; ?> - Fecha: <?= $orden['fecha_emision']; ?> - Monto: <?= $orden['monto_total']; ?> - Estado: <?= $orden['estado']; ?></ol>
     <?php endforeach; ?>
 </ul>
