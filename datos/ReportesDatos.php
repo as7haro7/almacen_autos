@@ -1,5 +1,4 @@
 <?php
-// datos/ReportesDatos.php
 
 require_once 'conexion.php';
 
@@ -90,5 +89,77 @@ class ReportesDatos {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+
+
+/**
+ * Obtiene todas las categorías para usarlas en los filtros.
+ * @return array
+ */
+public function obtenerTodasLasCategorias() {
+    $sql = "SELECT id_categoria, nombre_categoria FROM categorias ORDER BY nombre_categoria ASC;";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Obtiene el reporte de ventas aplicando filtros dinámicos.
+
+ */
+public function obtenerVentasConFiltros($filtros) {
+    $sql = "
+        SELECT 
+            pv.fecha_pedido,
+            c.nombre_completo AS cliente,
+            a.descripcion AS articulo,
+            cat.nombre_categoria,
+            pvd.cantidad,
+            pvd.precio_unitario,
+            (pvd.cantidad * pvd.precio_unitario) AS subtotal
+        FROM pedidos_venta pv
+        JOIN clientes c ON pv.id_cliente = c.id_cliente
+        JOIN pedidos_venta_detalle pvd ON pv.id_pedido = pvd.id_pedido
+        JOIN articulos a ON pvd.id_articulo = a.id_articulo
+        JOIN categorias cat ON a.id_categoria = cat.id_categoria
+        WHERE 1=1
+    ";
+
+    $params = [];
+
+    // Añadimos los filtros dinámicamente
+    if (!empty($filtros['fecha_inicio'])) {
+        $sql .= " AND DATE(pv.fecha_pedido) >= :fecha_inicio";
+        $params[':fecha_inicio'] = $filtros['fecha_inicio'];
+    }
+    if (!empty($filtros['fecha_fin'])) {
+        $sql .= " AND DATE(pv.fecha_pedido) <= :fecha_fin";
+        $params[':fecha_fin'] = $filtros['fecha_fin'];
+    }
+    if (!empty($filtros['id_categoria'])) {
+        $sql .= " AND a.id_categoria = :id_categoria";
+        $params[':id_categoria'] = $filtros['id_categoria'];
+    }
+
+    $sql .= " ORDER BY pv.fecha_pedido DESC;";
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+public function obtenerResumenDashboard() {
+    $sql = "
+        SELECT
+            SUM(cantidad) AS total_stock,
+            COUNT(DISTINCT id_articulo) AS articulos_unicos
+        FROM inventario_stock;
+    ";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 }
 ?>
