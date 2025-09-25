@@ -1,5 +1,4 @@
 <?php
-// negocio/ReportesNegocio.php
 require_once '../datos/ReportesDatos.php';
 
 class ReportesNegocio {
@@ -36,5 +35,41 @@ class ReportesNegocio {
         $repo = new ReportesDatos();
         return $repo->obtenerArticulosDanados();
     }
+
+
+
+
+    public function obtenerCategoriasParaFiltro() {
+        $repo = new ReportesDatos();
+        return $repo->obtenerTodasLasCategorias();
+    }
+
+    public function generarReporteVentas($filtros) {
+        $repo = new ReportesDatos();
+        $ventas = $repo->obtenerVentasConFiltros($filtros);
+
+        $totalVentas = 0;
+        foreach ($ventas as $venta) {
+            $totalVentas += $venta['subtotal'];
+        }
+
+        return [
+            'detalle' => $ventas,
+            'total_ventas' => $totalVentas
+        ];
+    }
+
+    public function generarResumenDashboard() {
+    $repo = new ReportesDatos();
+    $resumen = $repo->obtenerResumenDashboard();
+    
+    $inventarioValorizado = $this->generarReporteInventarioValorizado();
+    
+    return [
+        'total_stock' => $resumen['total_stock'],
+        'articulos_unicos' => $resumen['articulos_unicos'],
+        'valor_total_inventario' => $inventarioValorizado['total_general']
+    ];
+}
 }
 ?>
